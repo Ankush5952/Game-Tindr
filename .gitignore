@@ -1,0 +1,8 @@
+.venv/
+pychache/
+*.pyc
+.env
+config/config.json
+*.db
+.vs/
+*.pyproj.user
