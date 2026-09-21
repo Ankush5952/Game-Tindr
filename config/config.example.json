@@ -1,0 +1,8 @@
+{
+  "active_theme": "dark",
+  "enabled_sources": {
+    "igdb": true,
+    "steam": false,
+    "rawg": false
+  }
+}

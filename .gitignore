@@ -6,3 +6,5 @@ config/config.json
 *.db
 .vs/
 *.pyproj.user
+prompt.md
+temp.py
