@@ -1,8 +1,9 @@
+import time
+import timeit
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-from tkinter.tix import tixCommand
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -57,5 +58,17 @@ def post_json(url : str, data : dict | None = None, headers : dict | None = None
         return response.json()
     except requests.exceptions.RequestException as e:
         logger.error(f"HTTP POST failed for {url} : {e}")
+        raise HttpClientError(f"Request to {url} failed : {e}") from e
+
+def post_text(url : str, body : str, headers : dict | None = None, timeout : int = 10) -> list | dict :
+    '''
+    Makes POST request with a raw text body
+    '''
+    try:
+        response = _session.post(url, data=body.encode("utf-8"), headers=headers, timeout=timeout)
+        response.raise_for_status();
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"HTTP POST (text) failed for {url} : {e}")
         raise HttpClientError(f"Request to {url} failed : {e}") from e
 
