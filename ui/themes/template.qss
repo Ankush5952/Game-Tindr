@@ -1,0 +1,40 @@
+QWidget {
+	background-color : $background;
+	color : $text;
+	font-size : 14px;
+}
+
+QTabWidget::pane {
+	border : 1px solid $border;
+	background-color : $surface;
+}
+
+QTabBar::tab {
+	background-color : $background;
+	color : $text_secondary;
+	padding : 8px 16px;
+	border : 1px solid $border;
+	border-bottom : none;
+}
+
+QTabBar::tab:selected {
+	background-color : $surface;
+	color : $text;
+	border-bottom: 2px solid $accent;
+}
+
+QPushButton {
+	background-color : $accent;
+	color : $background;
+	padding : 8px 16px;
+	border : none;
+	border-radius : 4px;
+}
+
+QPushButton:hover {
+	background-color : $accent_hover;
+}
+
+QLabel {
+	color : $text;
+}

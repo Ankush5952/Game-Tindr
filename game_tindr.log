@@ -34,3 +34,140 @@
 2026-09-22 10:09:44,087 | INFO | core.game_repository | Updated existing game : God of War
 2026-09-22 10:09:44,090 | INFO | core.game_repository | Updated existing game : The Last of Us
 2026-09-22 10:09:44,092 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 12:32:52,664 | INFO | __main__ | Starting Game Tindr
+2026-09-22 12:32:52,665 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 12:32:52,683 | INFO | __main__ | Using existing user : Player
+2026-09-22 12:32:52,684 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 12:32:55,284 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 12:32:55,300 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 12:32:55,304 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 12:32:55,309 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 12:32:55,313 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 12:32:55,316 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 12:32:55,320 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 12:32:55,324 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 12:32:55,329 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 12:32:55,332 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 12:32:55,336 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 13:37:43,040 | INFO | __main__ | Starting Game Tindr
+2026-09-22 13:37:43,042 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 13:37:43,061 | INFO | __main__ | Using existing user : Player
+2026-09-22 13:37:43,063 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 13:37:45,752 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 13:37:45,764 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 13:37:45,769 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 13:37:45,772 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 13:37:45,775 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 13:37:45,778 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 13:37:45,781 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 13:37:45,784 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 13:37:45,787 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 13:37:45,789 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 13:37:45,791 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 13:37:45,838 | ERROR | ui.theme_loader | Theme 'dark' is missing required color '\n\tbackground-color '
+2026-09-22 13:44:35,432 | INFO | __main__ | Starting Game Tindr
+2026-09-22 13:44:35,434 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 13:44:35,459 | INFO | __main__ | Using existing user : Player
+2026-09-22 13:44:35,460 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 13:44:38,218 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 13:44:38,239 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 13:44:38,242 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 13:44:38,244 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 13:44:38,246 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 13:44:38,249 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 13:44:38,251 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 13:44:38,253 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 13:44:38,255 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 13:44:38,257 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 13:44:38,259 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 13:44:38,284 | ERROR | ui.theme_loader | Theme 'dark' is missing required color '\n\tbackground-color '
+2026-09-22 13:51:58,374 | INFO | __main__ | Starting Game Tindr
+2026-09-22 13:51:58,376 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 13:51:58,389 | INFO | __main__ | Using existing user : Player
+2026-09-22 13:51:58,390 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 13:52:01,022 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 13:52:01,037 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 13:52:01,041 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 13:52:01,054 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 13:52:01,056 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 13:52:01,063 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 13:52:01,065 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 13:52:01,068 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 13:52:01,071 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 13:52:01,073 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 13:52:01,075 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 13:56:36,224 | INFO | __main__ | Starting Game Tindr
+2026-09-22 13:56:36,225 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 13:56:36,237 | INFO | __main__ | Using existing user : Player
+2026-09-22 13:56:36,238 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 13:56:38,365 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 13:56:38,381 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 13:56:38,384 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 13:56:38,387 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 13:56:38,389 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 13:56:38,392 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 13:56:38,394 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 13:56:38,396 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 13:56:38,399 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 13:56:38,401 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 13:56:38,402 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 13:59:29,239 | INFO | __main__ | Starting Game Tindr
+2026-09-22 13:59:29,240 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 13:59:29,252 | INFO | __main__ | Using existing user : Player
+2026-09-22 13:59:29,253 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 13:59:31,439 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 13:59:31,450 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 13:59:31,453 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 13:59:31,456 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 13:59:31,459 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 13:59:31,461 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 13:59:31,463 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 13:59:31,466 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 13:59:31,468 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 13:59:31,470 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 13:59:31,472 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 14:01:02,687 | INFO | __main__ | Starting Game Tindr
+2026-09-22 14:01:02,688 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 14:01:02,700 | INFO | __main__ | Using existing user : Player
+2026-09-22 14:01:02,701 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 14:01:05,275 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 14:01:05,297 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 14:01:05,300 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 14:01:05,303 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 14:01:05,305 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 14:01:05,307 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 14:01:05,309 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 14:01:05,311 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 14:01:05,314 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 14:01:05,316 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 14:01:05,318 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 14:02:33,657 | INFO | __main__ | Starting Game Tindr
+2026-09-22 14:02:33,658 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 14:02:33,671 | INFO | __main__ | Using existing user : Player
+2026-09-22 14:02:33,672 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 14:02:35,740 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 14:02:35,753 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 14:02:35,756 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 14:02:35,759 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 14:02:35,761 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 14:02:35,763 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 14:02:35,766 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 14:02:35,768 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 14:02:35,772 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 14:02:35,774 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 14:02:35,776 | INFO | core.game_repository | Updated existing game : Half-Life 2
+2026-09-22 14:03:03,072 | INFO | __main__ | Starting Game Tindr
+2026-09-22 14:03:03,073 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 14:03:03,087 | INFO | __main__ | Using existing user : Player
+2026-09-22 14:03:03,088 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 14:03:05,105 | INFO | sources.igdb_source | Fetched 10 games from IGDB
+2026-09-22 14:03:05,122 | INFO | core.game_repository | Updated existing game : Grand Theft Auto V
+2026-09-22 14:03:05,125 | INFO | core.game_repository | Updated existing game : The Witcher 3: Wild Hunt
+2026-09-22 14:03:05,127 | INFO | core.game_repository | Updated existing game : Portal 2
+2026-09-22 14:03:05,129 | INFO | core.game_repository | Updated existing game : The Elder Scrolls V: Skyrim
+2026-09-22 14:03:05,132 | INFO | core.game_repository | Updated existing game : Grand Theft Auto: San Andreas
+2026-09-22 14:03:05,135 | INFO | core.game_repository | Updated existing game : Portal
+2026-09-22 14:03:05,137 | INFO | core.game_repository | Updated existing game : Red Dead Redemption 2
+2026-09-22 14:03:05,140 | INFO | core.game_repository | Updated existing game : God of War
+2026-09-22 14:03:05,142 | INFO | core.game_repository | Updated existing game : The Last of Us
+2026-09-22 14:03:05,144 | INFO | core.game_repository | Updated existing game : Half-Life 2
