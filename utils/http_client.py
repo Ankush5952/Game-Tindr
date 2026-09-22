@@ -1,3 +1,4 @@
+import http
 import time
 import timeit
 import requests
@@ -47,6 +48,19 @@ def get_json(url : str, params : dict | None = None, headers : dict | None = Non
     except requests.exceptions.RequestException as e:
         logger.error(f"HTTP GET failed for {url} : {e}")
         raise HttpClientError(f"Request to {url} failed : {e}") from e
+
+def get_bytes(url : str, timeout : int = 10) -> bytes:
+    '''
+    Fetches raw bytes from a url -downloading images
+    '''
+
+    try:
+        response = _session.get(url, timeout=timeout)
+        response.raise_for_status()
+        return response.content
+    except requests.exceptions.RequestException as e:
+        logger.error(f"HTTP GET (bytes) failed for {url} : {e}")
+        raise HttpClientError(F"Request to {url} failed : {e}") from e
 
 def post_json(url : str, data : dict | None = None, headers : dict | None = None, timeout : int = 10) -> dict:
     '''

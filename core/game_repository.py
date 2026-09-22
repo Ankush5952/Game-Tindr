@@ -36,7 +36,9 @@ def save_game(session : Session, raw : RawGameData) -> Game:
         existing.release_year =raw.release_year
 
         existing.genres = [ get_or_create_genre(session, name) for name in raw.genres ]
-        logger.info(f"Updated existing game : {existing.title}")
+        logger.info(f"Updated existing game : {existing.title} | genres : {[g.name for g in existing.genres]}")
+
+        session.commit()
 
         return existing
 
