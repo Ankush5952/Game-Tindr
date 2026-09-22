@@ -32,8 +32,9 @@ class GameDataSource(ABC):
         raise NotImplementedError
 
     @abstractclassmethod
-    def fetch_games(self, limit : int = 20) -> list[RawGameData]:
+    def fetch_games(self, limit : int = 20, offset : int = 0) -> list[RawGameData]:
         '''
-        Fetches upto limit games from this source and returns them as a RawGameData list
+        Fetches upto <limit> games with an <offset> for pagination, from this source
+        and returns them as a RawGameData list
         '''
         raise NotImplementedError

@@ -52,9 +52,9 @@ class IGDBSource(GameDataSource):
 
         return self._access_token
 
-    def fetch_games(self, limit : int = 30) -> list[RawGameData]:
+    def fetch_games(self, limit : int = 20, offset:int = 0) -> list[RawGameData]:
         '''
-        Fetches 'limit' popular games from IGDB and converts them into RawGameData
+        Fetches <limit> popular games at an offset of <offset> from IGDB and converts them into RawGameData
         '''
 
         token = self._get_access_token()
@@ -70,6 +70,7 @@ class IGDBSource(GameDataSource):
                 "genres.name,tags,keywords.name;"
                 f"sort total_rating_count desc;"
                 f"limit {limit};"
+                f"offset {offset};"
             )
 
         try:
@@ -78,9 +79,7 @@ class IGDBSource(GameDataSource):
             logger.error("Failed to fetch games from IGDB")
             return []
 
-        results = []
-        for raw in raw_games:
-            results.append(self._to_raw_game_data(raw))
+        results = [self._to_raw_game_data(raw) for raw in raw_games]
 
         logger.info(f"Fetched {len(results)} games from IGDB")
         return results

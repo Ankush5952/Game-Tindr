@@ -2,9 +2,12 @@ from PySide6.QtWidgets import QWidget, QLabel
 from PySide6.QtCore import Qt
 
 from core.database import get_session
-from core.models import Game, SwipeRecord, User
+from core.models import SwipeRecord, User
 from ui.swipe_card_widget import GameCardWidget
+from core.game_queue_service import GameQueueService
+from ui.queue_refill_worker import QueueRefillWorker
 from utils.logger import get_logger
+from config.settings import Settings
 
 logger = get_logger(__name__)
 
@@ -22,6 +25,7 @@ class SwipeView(QWidget):
 
         self.current_card : GameCardWidget | None = None
         self.no_games_label : QLabel | None = None
+        self.refill_worker : QueueRefillWorker | None = None
 
         self.load_next_card()
 
@@ -34,32 +38,51 @@ class SwipeView(QWidget):
         try:
             user = session.query(User).first()
 
-            #Find a game this user hasn't swiped yet
-            already_swiped_ids = [
-                    swipe.game_id
-                    for swipe in 
-                    session.query(SwipeRecord).filter_by(user_id = user.id).all()
-                ]
+            settings = Settings.load()
+            queue_service = GameQueueService(session, user, settings)
 
-            game = (
-                    session.query(Game)
-                    .filter(~Game.id.in_(already_swiped_ids))
-                    .first()
-                )
-
-            if game is None:
-                self.show_no_games_message()
-                return
-
-            card = GameCardWidget(game)
-            card.setParent(self)
-            card.move(250, 30)
-            card.swiped.connect(lambda liked : self.on_swiped(game.id, liked))
-            card.show()
-
-            self.current_card = card
+            game = queue_service.get_next_game()
+            needs_refill = queue_service.needs_refill()
+            
+            card = GameCardWidget(game) if game is not None else None
         finally:
             session.close()
+
+        if needs_refill:
+            self.trigger_background_refill()
+
+        self.clear_no_games_label()
+            
+        if game is None:
+            self.show_no_games_message()
+            return
+
+        card.setParent(self)
+        card.move(250, 30)
+        card.swiped.connect(lambda liked, gid=game.id : self.on_swiped(gid, liked))
+        card.show()
+
+        self.current_card = card
+
+    def trigger_background_refill(self) -> None:
+        '''
+        Starts a bg refill, unless one is alr running
+        '''
+        if self.refill_worker is not None and self.refill_worker.isRunning():
+            return
+
+        logger.info("Queue running low - starting bg refill")
+        self.refill_worker = QueueRefillWorker()
+        self.refill_worker.finished_refill.connect(self.on_refill_finished)
+        self.refill_worker.start()
+
+    def on_refill_finished(self) -> None:
+        '''
+        Post refill event trigger function
+        '''
+        logger.info("Bg refill finished")
+        if self.current_card is None:
+            self.load_next_card()
 
     def on_swiped(self, game_id : int, liked : bool) -> None:
         '''
@@ -91,9 +114,14 @@ class SwipeView(QWidget):
         self.load_next_card()
 
     def show_no_games_message(self) -> None:
-        label = QLabel("No more games to swipe")
+        label = QLabel("Loadig...")
         label.setParent(self)
         label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         label.setGeometry(0, 200, 800, 50)
         label.show()
         self.no_games_label = label
+
+    def clear_no_games_label(self) -> None:
+        if self.no_games_label is not None:
+            self.no_games_label.deleteLater()
+            self.no_games_label = None

@@ -6,8 +6,6 @@ from core.database import init_db, get_session
 from core.models import User
 from config.settings import Settings
 from utils.logger import get_logger
-from sources.registry import SourceRegistry
-from core.game_repository import save_game
 from ui.theme_loader import load_stylesheet
 
 #Init logger
@@ -31,24 +29,6 @@ def ensure_default_user() -> None:
     finally:
         session.close()
 
-#Game saving
-def fetch_and_save_games() -> None:
-    '''
-    Fetches game from active sources and saves new ones to db
-    '''
-
-
-    settings = Settings.load()
-    registry = SourceRegistry(settings)
-    session = get_session()
-    try:
-        for source in registry.get_active_sources():
-            games = source.fetch_games(limit = 10)
-            for raw_game in games:
-                save_game(session, raw_game)
-    finally:
-        session.close()
-
 #Main function
 def main() -> None:
     logger.info("Starting Game Tindr")
@@ -60,10 +40,6 @@ def main() -> None:
     #Initiate db and default configs
     init_db()
     ensure_default_user()
-
-    #Load games into the db
-    fetch_and_save_games()
-
     
     #Manages whole GUI app - handles event loop
     app = QApplication(sys.argv)
