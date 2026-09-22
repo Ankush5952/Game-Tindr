@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+import random
 
 from config.settings import Settings
 from core.models import Game, QueuedGame, SwipeRecord, User
@@ -87,6 +88,7 @@ class GameQueueService:
                 )
 
             raws = source.fetch_games(limit = FETCH_BATCH_SIZE, offset = already_fetched_count)
+            random.shuffle(raws) #Shuffle the fetch for randomization
             for raw in raws:
                 game = save_game(self.session, raw)
 

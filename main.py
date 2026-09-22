@@ -7,6 +7,7 @@ from core.models import User
 from config.settings import Settings
 from utils.logger import get_logger
 from ui.theme_loader import load_stylesheet
+from ui.onboarding import OnboardingDialog
 
 #Init logger
 logger = get_logger(__name__)
@@ -50,6 +51,10 @@ def main() -> None:
 
     #base class for anything visual
     window = MainWindow()
+    if not settings.onboarded:
+        onboarding = OnboardingDialog()
+        onboarding.exec()
+        settings.mark_onboarding_completed()
     window.show()
 
     #closes the app with the right exit code

@@ -1,0 +1,188 @@
+2026-09-22 20:45:55,381 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:45:55,400 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:45:55,479 | INFO | __main__ | Created Default user
+2026-09-22 20:45:55,513 | INFO | ui.swipe_view | Queue running low - starting bg refill
+2026-09-22 20:45:55,533 | INFO | core.game_queue_service | refilling game queue
+2026-09-22 20:45:55,541 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 20:45:57,708 | INFO | sources.igdb_source | Fetched 15 games from IGDB
+2026-09-22 20:45:57,729 | INFO | core.game_repository | Saved new game : Portal
+2026-09-22 20:45:57,739 | INFO | core.game_repository | Saved new game : The Elder Scrolls V: Skyrim
+2026-09-22 20:45:57,748 | INFO | core.game_repository | Saved new game : Half-Life 2
+2026-09-22 20:45:57,758 | INFO | core.game_repository | Saved new game : Red Dead Redemption 2
+2026-09-22 20:45:57,767 | INFO | core.game_repository | Saved new game : The Witcher 3: Wild Hunt
+2026-09-22 20:45:57,777 | INFO | core.game_repository | Saved new game : Grand Theft Auto: Vice City
+2026-09-22 20:45:57,785 | INFO | core.game_repository | Saved new game : Portal 2
+2026-09-22 20:45:57,795 | INFO | core.game_repository | Saved new game : The Legend of Zelda: Breath of the Wild
+2026-09-22 20:45:57,804 | INFO | core.game_repository | Saved new game : Half-Life
+2026-09-22 20:45:57,813 | INFO | core.game_repository | Saved new game : Grand Theft Auto: San Andreas
+2026-09-22 20:45:57,822 | INFO | core.game_repository | Saved new game : God of War
+2026-09-22 20:45:57,829 | INFO | core.game_repository | Saved new game : The Last of Us
+2026-09-22 20:45:57,844 | INFO | core.game_repository | Saved new game : Assassin's Creed II
+2026-09-22 20:45:57,854 | INFO | core.game_repository | Saved new game : BioShock
+2026-09-22 20:45:57,863 | INFO | core.game_repository | Saved new game : Grand Theft Auto V
+2026-09-22 20:45:57,868 | INFO | ui.swipe_view | Bg refill finished
+2026-09-22 20:46:09,282 | INFO | ui.swipe_view | Recorded swipe : game_id =1 liked = True
+2026-09-22 20:46:13,984 | INFO | ui.swipe_view | Recorded swipe : game_id =2 liked = True
+2026-09-22 20:46:15,398 | INFO | ui.swipe_view | Recorded swipe : game_id =3 liked = False
+2026-09-22 20:46:18,031 | INFO | ui.swipe_view | Recorded swipe : game_id =4 liked = False
+2026-09-22 20:46:22,439 | INFO | ui.swipe_view | Recorded swipe : game_id =5 liked = True
+2026-09-22 20:46:23,649 | INFO | ui.swipe_view | Recorded swipe : game_id =6 liked = False
+2026-09-22 20:46:24,805 | INFO | ui.swipe_view | Recorded swipe : game_id =7 liked = True
+2026-09-22 20:46:26,039 | INFO | ui.swipe_view | Recorded swipe : game_id =8 liked = True
+2026-09-22 20:46:34,925 | INFO | ui.swipe_view | Recorded swipe : game_id =9 liked = False
+2026-09-22 20:46:36,223 | INFO | ui.swipe_view | Recorded swipe : game_id =10 liked = False
+2026-09-22 20:46:36,252 | INFO | ui.swipe_view | Queue running low - starting bg refill
+2026-09-22 20:46:36,255 | INFO | core.game_queue_service | refilling game queue
+2026-09-22 20:46:36,257 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 20:46:37,830 | INFO | ui.swipe_view | Recorded swipe : game_id =11 liked = True
+2026-09-22 20:46:38,470 | INFO | sources.igdb_source | Fetched 15 games from IGDB
+2026-09-22 20:46:38,485 | INFO | core.game_repository | Saved new game : Elden Ring
+2026-09-22 20:46:38,495 | INFO | core.game_repository | Saved new game : Uncharted 4: A Thief's End
+2026-09-22 20:46:38,506 | INFO | core.game_repository | Saved new game : Far Cry 3
+2026-09-22 20:46:38,520 | INFO | core.game_repository | Saved new game : Hollow Knight
+2026-09-22 20:46:38,532 | INFO | core.game_repository | Saved new game : Batman: Arkham Asylum
+2026-09-22 20:46:38,544 | INFO | core.game_repository | Saved new game : Red Dead Redemption
+2026-09-22 20:46:38,554 | INFO | core.game_repository | Saved new game : BioShock Infinite
+2026-09-22 20:46:38,564 | INFO | core.game_repository | Saved new game : Batman: Arkham City
+2026-09-22 20:46:38,574 | INFO | core.game_repository | Saved new game : Horizon Zero Dawn
+2026-09-22 20:46:38,586 | INFO | core.game_repository | Saved new game : Marvel's Spider-Man
+2026-09-22 20:46:38,597 | INFO | core.game_repository | Saved new game : Fallout: New Vegas
+2026-09-22 20:46:38,606 | INFO | core.game_repository | Saved new game : Tomb Raider
+2026-09-22 20:46:38,614 | INFO | core.game_repository | Saved new game : Mass Effect
+2026-09-22 20:46:38,623 | INFO | core.game_repository | Saved new game : Uncharted 2: Among Thieves
+2026-09-22 20:46:38,631 | INFO | core.game_repository | Saved new game : Mass Effect 2
+2026-09-22 20:46:38,636 | INFO | ui.swipe_view | Bg refill finished
+2026-09-22 20:46:39,360 | INFO | ui.swipe_view | Recorded swipe : game_id =12 liked = True
+2026-09-22 20:46:42,128 | INFO | ui.swipe_view | Recorded swipe : game_id =13 liked = False
+2026-09-22 20:46:43,735 | INFO | ui.swipe_view | Recorded swipe : game_id =14 liked = False
+2026-09-22 20:46:45,330 | INFO | ui.swipe_view | Recorded swipe : game_id =15 liked = False
+2026-09-22 20:46:46,560 | INFO | ui.swipe_view | Recorded swipe : game_id =16 liked = True
+2026-09-22 20:46:51,926 | INFO | ui.swipe_view | Recorded swipe : game_id =17 liked = False
+2026-09-22 20:46:56,086 | INFO | ui.swipe_view | Recorded swipe : game_id =18 liked = False
+2026-09-22 20:46:57,871 | INFO | ui.swipe_view | Recorded swipe : game_id =19 liked = True
+2026-09-22 20:47:03,767 | INFO | ui.swipe_view | Recorded swipe : game_id =20 liked = False
+2026-09-22 20:47:04,872 | INFO | ui.swipe_view | Recorded swipe : game_id =21 liked = False
+2026-09-22 20:47:06,015 | INFO | ui.swipe_view | Recorded swipe : game_id =22 liked = False
+2026-09-22 20:47:07,223 | INFO | ui.swipe_view | Recorded swipe : game_id =23 liked = False
+2026-09-22 20:47:11,274 | INFO | ui.swipe_view | Recorded swipe : game_id =24 liked = False
+2026-09-22 20:47:13,529 | INFO | ui.swipe_view | Recorded swipe : game_id =25 liked = False
+2026-09-22 20:47:13,554 | INFO | ui.swipe_view | Queue running low - starting bg refill
+2026-09-22 20:47:13,558 | INFO | core.game_queue_service | refilling game queue
+2026-09-22 20:47:13,560 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 20:47:15,740 | INFO | sources.igdb_source | Fetched 15 games from IGDB
+2026-09-22 20:47:15,754 | INFO | core.game_repository | Saved new game : Doom
+2026-09-22 20:47:15,765 | INFO | core.game_repository | Saved new game : Call of Duty 4: Modern Warfare
+2026-09-22 20:47:15,776 | INFO | core.game_repository | Saved new game : Undertale
+2026-09-22 20:47:15,785 | INFO | core.game_repository | Saved new game : Super Mario Odyssey
+2026-09-22 20:47:15,797 | INFO | core.game_repository | Saved new game : Minecraft: Java Edition
+2026-09-22 20:47:15,810 | INFO | core.game_repository | Saved new game : Super Mario 64
+2026-09-22 20:47:15,822 | INFO | core.game_repository | Saved new game : Borderlands 2
+2026-09-22 20:47:15,832 | INFO | core.game_repository | Saved new game : Bloodborne
+2026-09-22 20:47:15,845 | INFO | core.game_repository | Saved new game : Mass Effect 3
+2026-09-22 20:47:15,857 | INFO | core.game_repository | Saved new game : Super Mario World
+2026-09-22 20:47:15,875 | INFO | core.game_repository | Saved new game : Life Is Strange
+2026-09-22 20:47:15,887 | INFO | core.game_repository | Saved new game : The Legend of Zelda: Ocarina of Time
+2026-09-22 20:47:15,898 | INFO | core.game_repository | Saved new game : Dishonored
+2026-09-22 20:47:15,923 | INFO | core.game_repository | Saved new game : Grand Theft Auto IV
+2026-09-22 20:47:15,933 | INFO | core.game_repository | Saved new game : Dark Souls III
+2026-09-22 20:47:15,940 | INFO | ui.swipe_view | Bg refill finished
+2026-09-22 20:47:16,791 | INFO | ui.swipe_view | Recorded swipe : game_id =26 liked = False
+2026-09-22 20:47:19,528 | INFO | ui.swipe_view | Recorded swipe : game_id =27 liked = True
+2026-09-22 20:47:22,070 | INFO | ui.swipe_view | Recorded swipe : game_id =28 liked = False
+2026-09-22 20:47:23,805 | INFO | ui.swipe_view | Recorded swipe : game_id =29 liked = False
+2026-09-22 20:47:24,967 | INFO | ui.swipe_view | Recorded swipe : game_id =30 liked = False
+2026-09-22 20:47:28,247 | INFO | ui.swipe_view | Recorded swipe : game_id =31 liked = False
+2026-09-22 20:47:30,263 | INFO | ui.swipe_view | Recorded swipe : game_id =32 liked = False
+2026-09-22 20:47:32,435 | INFO | ui.swipe_view | Recorded swipe : game_id =33 liked = True
+2026-09-22 20:47:36,199 | INFO | ui.swipe_view | Recorded swipe : game_id =34 liked = False
+2026-09-22 20:47:37,518 | INFO | ui.swipe_view | Recorded swipe : game_id =35 liked = True
+2026-09-22 20:47:39,567 | INFO | ui.swipe_view | Recorded swipe : game_id =36 liked = False
+2026-09-22 20:47:44,095 | INFO | ui.swipe_view | Recorded swipe : game_id =37 liked = False
+2026-09-22 20:47:45,355 | INFO | ui.swipe_view | Recorded swipe : game_id =38 liked = True
+2026-09-22 20:47:46,553 | INFO | ui.swipe_view | Recorded swipe : game_id =39 liked = False
+2026-09-22 20:47:47,608 | INFO | ui.swipe_view | Recorded swipe : game_id =40 liked = False
+2026-09-22 20:47:47,631 | INFO | ui.swipe_view | Queue running low - starting bg refill
+2026-09-22 20:47:47,634 | INFO | core.game_queue_service | refilling game queue
+2026-09-22 20:47:47,637 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 20:47:49,722 | INFO | sources.igdb_source | Fetched 15 games from IGDB
+2026-09-22 20:47:49,737 | INFO | core.game_repository | Saved new game : Dark Souls
+2026-09-22 20:47:49,752 | INFO | core.game_repository | Saved new game : Metal Gear Solid
+2026-09-22 20:47:49,762 | INFO | core.game_repository | Saved new game : The Last of Us Part II
+2026-09-22 20:47:49,773 | INFO | core.game_repository | Saved new game : Assassin's Creed
+2026-09-22 20:47:49,781 | INFO | core.game_repository | Saved new game : Fallout 4
+2026-09-22 20:47:49,789 | INFO | core.game_repository | Saved new game : Dragon Age: Origins
+2026-09-22 20:47:49,797 | INFO | core.game_repository | Saved new game : Hades
+2026-09-22 20:47:49,807 | INFO | core.game_repository | Saved new game : The Walking Dead
+2026-09-22 20:47:49,815 | INFO | core.game_repository | Saved new game : Super Mario Bros. 3
+2026-09-22 20:47:49,822 | INFO | core.game_repository | Saved new game : Assassin's Creed Brotherhood
+2026-09-22 20:47:49,831 | INFO | core.game_repository | Saved new game : The Legend of Zelda: A Link to the Past
+2026-09-22 20:47:49,840 | INFO | core.game_repository | Saved new game : Max Payne
+2026-09-22 20:47:49,857 | INFO | core.game_repository | Saved new game : Stardew Valley
+2026-09-22 20:47:49,870 | INFO | core.game_repository | Saved new game : Assassin's Creed IV Black Flag
+2026-09-22 20:47:49,880 | INFO | core.game_repository | Saved new game : Fallout 3
+2026-09-22 20:47:49,886 | INFO | ui.swipe_view | Bg refill finished
+2026-09-22 20:48:07,168 | INFO | ui.swipe_view | Recorded swipe : game_id =41 liked = True
+2026-09-22 20:48:28,843 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:48:28,844 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:48:28,899 | INFO | __main__ | Created Default user
+2026-09-22 20:48:28,925 | INFO | ui.swipe_view | Queue running low - starting bg refill
+2026-09-22 20:48:28,938 | INFO | core.game_queue_service | refilling game queue
+2026-09-22 20:48:28,943 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 20:48:31,054 | INFO | sources.igdb_source | Fetched 15 games from IGDB
+2026-09-22 20:48:31,077 | INFO | core.game_repository | Saved new game : Grand Theft Auto V
+2026-09-22 20:48:31,087 | INFO | core.game_repository | Saved new game : Red Dead Redemption 2
+2026-09-22 20:48:31,098 | INFO | core.game_repository | Saved new game : The Last of Us
+2026-09-22 20:48:31,107 | INFO | core.game_repository | Saved new game : Grand Theft Auto: San Andreas
+2026-09-22 20:48:31,117 | INFO | core.game_repository | Saved new game : Portal 2
+2026-09-22 20:48:31,126 | INFO | core.game_repository | Saved new game : Grand Theft Auto: Vice City
+2026-09-22 20:48:31,137 | INFO | core.game_repository | Saved new game : Portal
+2026-09-22 20:48:31,146 | INFO | core.game_repository | Saved new game : God of War
+2026-09-22 20:48:31,155 | INFO | core.game_repository | Saved new game : Half-Life 2
+2026-09-22 20:48:31,163 | INFO | core.game_repository | Saved new game : The Witcher 3: Wild Hunt
+2026-09-22 20:48:31,171 | INFO | core.game_repository | Saved new game : Assassin's Creed II
+2026-09-22 20:48:31,180 | INFO | core.game_repository | Saved new game : The Elder Scrolls V: Skyrim
+2026-09-22 20:48:31,190 | INFO | core.game_repository | Saved new game : The Legend of Zelda: Breath of the Wild
+2026-09-22 20:48:31,199 | INFO | core.game_repository | Saved new game : Half-Life
+2026-09-22 20:48:31,207 | INFO | core.game_repository | Saved new game : BioShock
+2026-09-22 20:48:31,212 | INFO | ui.swipe_view | Bg refill finished
+2026-09-22 20:48:42,295 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:48:42,297 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:48:42,311 | INFO | __main__ | Using existing user : Player
+2026-09-22 20:49:34,808 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:49:34,812 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:49:34,824 | INFO | __main__ | Using existing user : Player
+2026-09-22 20:50:02,964 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:50:02,966 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:50:02,979 | INFO | __main__ | Using existing user : Player
+2026-09-22 20:52:01,443 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:52:01,446 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:52:01,460 | INFO | __main__ | Using existing user : Player
+2026-09-22 20:52:23,001 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:52:23,018 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:52:23,032 | INFO | __main__ | Using existing user : Player
+2026-09-22 20:52:31,207 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:52:31,211 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:52:31,224 | INFO | __main__ | Using existing user : Player
+2026-09-22 20:52:43,052 | INFO | __main__ | Starting Game Tindr
+2026-09-22 20:52:43,054 | INFO | __main__ | Loaded settings - active theme : dark
+2026-09-22 20:52:43,110 | INFO | __main__ | Created Default user
+2026-09-22 20:52:43,137 | INFO | ui.swipe_view | Queue running low - starting bg refill
+2026-09-22 20:52:43,312 | INFO | core.game_queue_service | refilling game queue
+2026-09-22 20:52:43,319 | INFO | sources.igdb_source | Reqiesting new IGDB access token
+2026-09-22 20:52:46,032 | INFO | sources.igdb_source | Fetched 15 games from IGDB
+2026-09-22 20:52:46,047 | INFO | core.game_repository | Saved new game : Grand Theft Auto: Vice City
+2026-09-22 20:52:46,061 | INFO | core.game_repository | Saved new game : Red Dead Redemption 2
+2026-09-22 20:52:46,070 | INFO | core.game_repository | Saved new game : BioShock
+2026-09-22 20:52:46,084 | INFO | core.game_repository | Saved new game : Assassin's Creed II
+2026-09-22 20:52:46,105 | INFO | core.game_repository | Saved new game : Grand Theft Auto: San Andreas
+2026-09-22 20:52:46,118 | INFO | core.game_repository | Saved new game : Portal
+2026-09-22 20:52:46,126 | INFO | core.game_repository | Saved new game : The Witcher 3: Wild Hunt
+2026-09-22 20:52:46,134 | INFO | core.game_repository | Saved new game : The Last of Us
+2026-09-22 20:52:46,142 | INFO | core.game_repository | Saved new game : God of War
+2026-09-22 20:52:46,150 | INFO | core.game_repository | Saved new game : Half-Life 2
+2026-09-22 20:52:46,158 | INFO | core.game_repository | Saved new game : Half-Life
+2026-09-22 20:52:46,165 | INFO | core.game_repository | Saved new game : The Elder Scrolls V: Skyrim
+2026-09-22 20:52:46,172 | INFO | core.game_repository | Saved new game : The Legend of Zelda: Breath of the Wild
+2026-09-22 20:52:46,179 | INFO | core.game_repository | Saved new game : Grand Theft Auto V
+2026-09-22 20:52:46,186 | INFO | core.game_repository | Saved new game : Portal 2
+2026-09-22 20:52:46,191 | INFO | ui.swipe_view | Bg refill finished

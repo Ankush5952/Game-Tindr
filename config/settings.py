@@ -17,6 +17,8 @@ class Settings:
     Build once at startup and use wherever
     '''
 
+    onboarded : bool = False
+
     igdb_client_id : str = ""
     igdb_client_secret : str = ""
     steam_api_key : str = ""
@@ -24,6 +26,23 @@ class Settings:
 
     active_theme : str = "dark"
     enabled_sources : dict = field(default_factory = dict)
+
+    def mark_onboarding_completed(self) -> None:
+        '''
+        Persists onboarded = True to config.json
+        '''
+        self.onboarded = True
+
+        config_data = {}
+        if CONFIG_PATH.exists():
+            with open(CONFIG_PATH, 'r') as f:
+                config_data = json.load(f)
+
+        config_data['onboarded'] = True
+
+        CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with open(CONFIG_PATH, 'w') as f:
+            json.dump(config_data, f, indent = 4)
 
     @classmethod
     def load(cls) -> "Settings":
@@ -40,6 +59,7 @@ class Settings:
             config_data = json.load(f)
 
         return cls(
+            onboarded = config_data.get("onboarded", False),
             igdb_client_id = os.getenv("IGDB_CLIENT_ID", ""),
             igdb_client_secret = os.getenv("IGDB_CLIENT_SECRET", ""),
             steam_api_key = os.getenv("STEAM_API_KEY", ""),

@@ -1,5 +1,6 @@
 {
   "active_theme": "dark",
+  "onboarded" :  false,
   "enabled_sources": {
     "igdb": true,
     "steam": false,
