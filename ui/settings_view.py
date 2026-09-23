@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QComboBox, QCheckBox, QApplication
+from PySide6.QtCore import Signal
 
 from config.settings import Settings
 from ui.theme_loader import load_stylesheet
@@ -15,6 +16,8 @@ class SettingsView(QWidget):
     Settings screen
     -live change apply
     '''
+
+    theme_changed = Signal(str)
 
     def __init__(self, settings : Settings):
         super().__init__()
@@ -50,6 +53,7 @@ class SettingsView(QWidget):
         app = QApplication.instance()
         app.setStyleSheet(load_stylesheet(theme_name))
 
+        self.theme_changed.emit(theme_name)
         logger.info(f"Theme changed to '{theme_name}'")
 
     def build_sources_section(self) -> QWidgets:

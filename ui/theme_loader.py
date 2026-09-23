@@ -15,13 +15,7 @@ def load_stylesheet(theme_name : str) -> str:
     in a shared QSS template
     '''
 
-    palette_path = THEMES_DIR/f"{theme_name}.json"
-    if not palette_path.exists():
-        logger.warning(f"Theme '{theme_name}' not found, falling back to 'dark'")
-        palette_path = THEMES_DIR/"dark.json"
-
-    with open(palette_path, 'r') as f:
-        palette = json.load(f)
+    palette = load_palette(theme_name)
 
     with open(TEMPLATE_PATH, 'r') as f:
         template = f.read()
@@ -31,3 +25,15 @@ def load_stylesheet(theme_name : str) -> str:
         stylesheet = stylesheet.replace(f"${color_name}", color_val)
 
     return stylesheet
+
+def load_palette(theme_name : str) -> dict:
+    '''
+    Loads a theme's raw color palette w/o building the full QSS sheet
+    '''
+    palette_path = THEMES_DIR/f"{theme_name}.json"
+    if not palette_path.exists():
+        logger.warning(f"Theme : {theme_name} DNE. falling back to dark")
+        palette_path = THEMES_DIR/"dark.json"
+
+    with open(palette_path, 'r') as f:
+        return json.load(f)
