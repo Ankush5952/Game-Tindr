@@ -4,6 +4,8 @@ from core.database import get_session
 from core.models import Game
 from ui.swipe_card_widget import GameCardWidget
 from ui.swipe_view import SwipeView
+from ui.settings_view import SettingsView
+from config.settings import Settings
 
 class MainWindow(QWidget):
     '''
@@ -23,8 +25,11 @@ class MainWindow(QWidget):
         layout.addWidget(self.tabs)
 
         self.tabs.addTab(SwipeView(), "Swipe")
-        self.tabs.addTab(self.build_placeholder("Profile screen - Phase 7"), "Profile")
-        self.tabs.addTab(self.build_placeholder("Settings screen - Phase 6"), "Settings")
+
+        self.tabs.addTab(self.build_placeholder("Profile screen - Phase 7"), "Settings")
+
+        settings = Settings.load()
+        self.tabs.addTab(SettingsView(settings), "Profile")
 
 
     def build_placeholder(self, text:str) -> QWidget:

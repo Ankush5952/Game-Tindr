@@ -27,22 +27,42 @@ class Settings:
     active_theme : str = "dark"
     enabled_sources : dict = field(default_factory = dict)
 
+    def save_config(self, updates : dict) -> None:
+        '''
+        merges updates into the config.json
+        '''
+        config_data = {}
+        if CONFIG_PATH.exists():
+            with open(CONFIG_PATH, 'r') as f:
+                config_data = json.load(f)
+
+        config_data.update(updates)
+
+        CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with open(CONFIG_PATH, 'w') as f:
+            json.dump(config_data, f, indent=4)
+
     def mark_onboarding_completed(self) -> None:
         '''
         Persists onboarded = True to config.json
         '''
         self.onboarded = True
 
-        config_data = {}
-        if CONFIG_PATH.exists():
-            with open(CONFIG_PATH, 'r') as f:
-                config_data = json.load(f)
+        self.save_config({"onboarded" : True})
 
-        config_data['onboarded'] = True
+    def set_active_theme(self, theme_name : str) -> None:
+        '''
+        Sets the app theme
+        '''
+        self.active_theme = theme_name
+        self.save_config({"active_theme" : theme_name})
 
-        CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
-        with open(CONFIG_PATH, 'w') as f:
-            json.dump(config_data, f, indent = 4)
+    def set_source_enabled(self, source_key : str, enabled : bool) -> None:
+        '''
+        Sets the enabled config of a source
+        '''
+        self.enabled_sources[source_key] = enabled
+        self.save_config({"enabled_sources" : self.enabled_sources})
 
     @classmethod
     def load(cls) -> "Settings":
