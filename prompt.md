@@ -194,12 +194,33 @@ Each phase = one focused chunk of work with a clear "done" state and a git commi
 - Why v1 is simple: establishes the recommendation "slot" in the architecture (a
   `Recommender` class the UI calls) before adding real ML — later versions swap the
   internals, not the interface.
+- STATUS: scoring logic (`RecommenderService`) built and validated against real swipe data —
+  results matched user intuition (liked genres scored high, disliked genres scored low).
+  Deliberately NOT wired into the live swipe queue/UI yet — since genre-only ranking is known
+  to be narrow (see Phase 9 limitations below) and the queue integration work would likely be
+  redone once Phase 9's richer signals land. Wiring into the queue happens once Phase 9's
+  scoring is in place, not before.
 
 **Phase 9 — Recommendation engine v2 (trainable ML model)**
 - Use scikit-learn to train a model (e.g. logistic regression / gradient boosting) on
   engineered features from swipe history, replacing/augmenting the v1 heuristic
 - Add retraining trigger (e.g. every N new swipes) — the "closed loop"
 - Why after v1: you need a working baseline and real data volume before ML tuning is useful.
+- KNOWN v1 LIMITATION to address here (validated via real testing on real swipe data):
+  genre-only scoring is a coarse signal — two games sharing identical genres/tags can be
+  wildly different in actual appeal (e.g. one story-rich and well-written, the other a
+  shallow implementation of the same premise). v1 has no way to capture this.
+- PLANNED v2 feature sources beyond genre weighting:
+  - IGDB `tags`/`keywords` fields (already fetched by `IGDBSource` but not yet stored/used —
+    finer-grained than genre, e.g. "Roguelike", "Story Rich", "Atmospheric")
+  - Game description/premise similarity: comparing a candidate game's description against
+    descriptions of games the user liked, to capture "appeals to the same taste" signal that
+    genre/tags can't (e.g. narrative tone, premise quality as perceived by the user's own
+    likes). This requires text embeddings (e.g. via the `sentence-transformers` Python
+    library: converts descriptions into vectors, compared via cosine similarity) — this is
+    genuine ML, not an extension of v1's weighted-sum heuristic, and belongs here in v2, not
+    bolted onto v1.
+  - Release year proximity, and other engineered features as they prove useful
 
 **Phase 10 — Additional data sources**
 - Add Steam Store API, RAWG sources (one at a time), each just a new `GameDataSource`
