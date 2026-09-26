@@ -1,3 +1,4 @@
+import keyword
 import time
 
 from config.settings import Settings
@@ -107,5 +108,5 @@ class IGDBSource(GameDataSource):
                 cover_image_url=cover_url,
                 release_year=release_year,
                 genres=genres,
-                tags=[] #Will revisit this
+                tags=[ kw["name"] for kw in raw.get("keywords", []) ]
             )

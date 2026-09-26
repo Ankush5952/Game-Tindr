@@ -125,7 +125,7 @@ class SwipeRecord(Base):
 
 class QueuedGame(Base):
     '''
-    Tracks games shown but now swiped for inter-session persistance
+    Tracks games shown but not swiped for inter-session persistance
     '''
     __tablename__ = "queued_games"
 

@@ -261,3 +261,14 @@ here in case circumstances change:
   dataset or your own user base — not feasible for a solo personal project currently.
 - **Mobile app version:** would require learning a new framework (Kivy for Python mobile, or
   a full rewrite in Flutter/React Native). PySide6 is desktop-only.
+- **Name/premise pattern-based recommendations ("if you like A, you'll likely like B/hate
+  C"):** this is collaborative filtering (patterns across many users' behavior) and/or LLM-
+  level semantic understanding of game names/premises — different from everything currently
+  planned (which is content-based: scoring a game's own attributes). Two blockers: (1)
+  collaborative filtering needs many users' data to find cross-game patterns — with only the
+  solo user's own swipes, there's no "other people" signal to learn from (same blocker as the
+  cross-user data item above); (2) using raw game names/descriptions as a learning signal for
+  "which games are similar in spirit" (e.g. knowing Dark Souls and Elden Ring are alike)
+  realistically needs an LLM with gaming-domain knowledge, not classical ML or generic
+  sentence embeddings, which may not capture gaming-specific similarity well. Revisit if a
+  user base or a suitable gaming-domain LLM/dataset becomes available.

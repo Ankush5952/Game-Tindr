@@ -12,39 +12,39 @@ class RecommendorService:
     def __init__(self, session : Session, user : User):
         self.session = session
         self.user = user
-        self.genre_weights : dict[str, float] = self.compute_genre_weights()
+        self.swipes = (
+                self.session.query(SwipeRecord)
+                .filter_by(user_id = self.user.id)
+                .all()
+        )
+        self.genre_weights : dict[str, float] = self.compute_genre_weights(lambda game : game.genres)
+        self.tag_weights : dict[str, float] = self.compute_genre_weights(lambda game : game.tags)
 
-    def compute_genre_weights(self) -> dict[str, float]:
+    def compute_genre_weights(self, get_labels) -> dict[str, float]:
         '''
         Returns a { <genre_name> : <genre_weight> } dict
         - weights normalized to [-1, 1] interval
         - unswiped genre score = 0
         '''
 
-        swipes = (
-                self.session.query(SwipeRecord)
-                .filter_by(user_id = self.user.id)
-                .all()
-            )
-
         liked_counts = defaultdict(int)
         disliked_counts = defaultdict(int)
 
-        for swipe in swipes:
-            for genre in swipe.game.genres:
+        for swipe in self.swipes:
+            for label in get_labels(swipe.game):
                 if swipe.liked:
-                    liked_counts[genre.name] += 1
+                    liked_counts[label.name] += 1
                 else:
-                    disliked_counts[genre.name] += 1
+                    disliked_counts[label.name] += 1
 
-        all_genre_names = set(liked_counts) | set(disliked_counts)
+        all_label_names = set(liked_counts) | set(disliked_counts)
         weights = {}
-        for genre_name in all_genre_names:
-            liked = liked_counts[genre_name]
-            disliked = disliked_counts[genre_name]
+        for name in all_label_names:
+            liked = liked_counts[name]
+            disliked = disliked_counts[name]
 
             total = liked + disliked
-            weights[genre_name] = (liked - disliked) / total
+            weights[name] = (liked - disliked) / total
 
         return weights
 
@@ -52,10 +52,10 @@ class RecommendorService:
         '''
         Returns a recommendation score for a single game
         '''
-        return sum(
-            self.genre_weights.get(genre.name, 0.0) 
-            for genre in game.genres
-            )
+        genre_score = sum( self.genre_weights.get(g.name, 0.0) for g in game.genres )
+        tag_score = sum( self.tag_weights.get(t.name, 0.0) for t in game.tags )
+        
+        return genre_score + tag_score
 
     def get_top_recommendations(self, games : list[Game], top_n : int = 5) -> list[tuple[Game, float]]:
         '''
