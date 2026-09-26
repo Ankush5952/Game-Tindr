@@ -1,6 +1,8 @@
 from collections import defaultdict
 from sqlalchemy.orm import Session
+import numpy as np
 
+from core.embedding_service import cosine_similarity
 from core.models import Game, SwipeRecord, User
 
 class RecommendorService:
@@ -17,14 +19,16 @@ class RecommendorService:
                 .filter_by(user_id = self.user.id)
                 .all()
         )
-        self.genre_weights : dict[str, float] = self.compute_genre_weights(lambda game : game.genres)
-        self.tag_weights : dict[str, float] = self.compute_genre_weights(lambda game : game.tags)
+        self.genre_weights : dict[str, float] = self.compute_label_weights(lambda game : game.genres)
+        self.tag_weights : dict[str, float] = self.compute_label_weights(lambda game : game.tags)
 
-    def compute_genre_weights(self, get_labels) -> dict[str, float]:
+        self.liked_embedding_avg = self.compute_liked_embedding_average()
+
+    def compute_label_weights(self, get_labels) -> dict[str, float]:
         '''
-        Returns a { <genre_name> : <genre_weight> } dict
+        Returns a { <label_name> : <label_weight> } dict
         - weights normalized to [-1, 1] interval
-        - unswiped genre score = 0
+        - unswiped label score = 0
         '''
 
         liked_counts = defaultdict(int)
@@ -48,14 +52,41 @@ class RecommendorService:
 
         return weights
 
+    def compute_liked_embedding_average(self) -> bytes:
+        '''
+        Averages th description embeddings of every liked game into a single 
+        'taste vector'.
+        -returns empty bytes if no liked embedding data
+        '''
+
+        liked_embeddings = [
+                np.frombuffer(swipe.game.description_embedding, dtype=np.float32)
+                for swipe in self.swipes
+                if swipe.liked and swipe.game.description_embedding
+            ]
+
+        if not liked_embeddings:
+            return b""
+
+        avg_vector = np.mean(liked_embeddings, axis=0)
+        return avg_vector.astype(np.float32).tobytes()
+
     def score_game(self, game : Game) -> float:
         '''
         Returns a recommendation score for a single game
+        based on genre, tag and description scores
         '''
-        genre_score = sum( self.genre_weights.get(g.name, 0.0) for g in game.genres )
-        tag_score = sum( self.tag_weights.get(t.name, 0.0) for t in game.tags )
+        genre_w = [self.genre_weights.get(g.name, 0.0) for g in game.genres]
+        genre_score = sum(genre_w)/len(genre_w)
         
-        return genre_score + tag_score
+        tag_w = [self.tag_weights.get(t.name, 0.0) for t in game.tags]
+        tag_score = sum( tag_w )/len(tag_w)
+
+        description_score = cosine_similarity(
+                self.liked_embedding_avg, game.description_embedding or b""
+            )
+        
+        return genre_score + tag_score + description_score
 
     def get_top_recommendations(self, games : list[Game], top_n : int = 5) -> list[tuple[Game, float]]:
         '''
