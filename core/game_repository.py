@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from core.models import Game, Genre, Tag
 from sources.base_source import RawGameData
 from utils.logger import get_logger
+from core.embedding_service import compute_embedding
 
 logger = get_logger(__name__)
 
@@ -47,6 +48,8 @@ def save_game(session : Session, raw : RawGameData) -> Game:
         existing.cover_image_url = raw.cover_image_url
         existing.release_year =raw.release_year
 
+        existing.description_embedding = compute_embedding(raw.description or "")
+
         existing.genres = [ get_or_create_genre(session, name) for name in raw.genres ]
         existing.tags = [ get_or_create_tag(session, name) for name in raw.tags ]
         logger.info(f"Updated existing game : [ Name : {existing.title}: \n Genres : {[g.name for g in existing.genres]} \n Tags: { [t.name for t in existing.tags] } ]")
@@ -61,7 +64,8 @@ def save_game(session : Session, raw : RawGameData) -> Game:
             source_id = raw.source_id,
             description = raw.description,
             cover_image_url = raw.cover_image_url,
-            release_year = raw.release_year
+            release_year = raw.release_year,
+            description_embedding = compute_embedding(raw.description or "")
         )
 
     session.add(game)

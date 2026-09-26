@@ -3,3 +3,4 @@ SQLAlchemy
 python-dotenv
 requests
 matplotlib
+sentence-transformers

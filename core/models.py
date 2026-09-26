@@ -1,5 +1,5 @@
 from datetime import UTC, datetime, timezone
-from sqlalchemy import String, Integer, Float, DateTime, ForeignKey, Boolean, Table, Column, null
+from sqlalchemy import String, Integer, Float, DateTime, ForeignKey, Boolean, Table, Column, LargeBinary
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 class Base(DeclarativeBase):
@@ -69,6 +69,7 @@ class Game(Base):
     source_id : Mapped[str] = mapped_column(String(100))
 
     description : Mapped[str | None] = mapped_column(String(2000), nullable=True)
+    description_embedding : Mapped[LargeBinary | None] = mapped_column(LargeBinary, nullable=True)
     cover_image_url : Mapped[str | None] = mapped_column(String(500), nullable=True)
     release_year : Mapped[int | None] = mapped_column(Integer, nullable=True)
 
