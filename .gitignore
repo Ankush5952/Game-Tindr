@@ -8,3 +8,4 @@ config/config.json
 *.pyproj.user
 prompt.md
 temp.py
+recommendor_model.pkl

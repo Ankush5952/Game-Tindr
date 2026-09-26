@@ -1866,3 +1866,5 @@
 2026-09-26 15:08:47,637 | INFO | ui.swipe_view | Recorded swipe : game_id =88 liked = False
 2026-09-26 15:08:49,162 | INFO | ui.swipe_view | Recorded swipe : game_id =89 liked = False
 2026-09-26 15:08:50,221 | INFO | ui.swipe_view | Recorded swipe : game_id =90 liked = False
+2026-09-26 16:09:37,080 | INFO | core.model_trainer | Trained recommendor model on 89 swipes. Learned coeffecieny=ts : [Genre = 1.417], [Tag = 4.237], [Description = 0.324]
+
