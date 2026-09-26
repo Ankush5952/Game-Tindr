@@ -39,7 +39,7 @@ class GameCardWidget(QWidget):
         self.title_label.setStyleSheet("font-size : 18px; font-weight : bold;")
         layout.addWidget(self.title_label)
 
-        genre_names = ",".join(genre.name for genre in game.genres)
+        genre_names = "Genres : " + ",".join(genre.name for genre in game.genres)
         self.genre_label = QLabel(genre_names, alignment=Qt.AlignmentFlag.AlignCenter)
         self.genre_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.genre_label)

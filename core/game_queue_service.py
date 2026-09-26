@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
-import random
 
 from config.settings import Settings
 from core.models import Game, QueuedGame, SwipeRecord, User
 from core.game_repository import save_game
 from sources.registry import SourceRegistry
+from core.recommendation_service import RecommendationService
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -78,7 +78,7 @@ class GameQueueService:
                 self.session.query(QueuedGame).filter_by(user_id = self.user.id).all()
             }
 
-        next_pos = self.get_next_queue_pos()
+        newly_available_games = []
 
         for source in self.registry.get_active_sources():
             already_fetched_count = (
@@ -88,22 +88,32 @@ class GameQueueService:
                 )
 
             raws = source.fetch_games(limit = FETCH_BATCH_SIZE, offset = already_fetched_count)
-            random.shuffle(raws) #Shuffle the fetch for randomization
+
             for raw in raws:
                 game = save_game(self.session, raw)
 
                 if game.id in already_swiped or game.id in already_queued:
                     continue
 
-                queued = QueuedGame(
-                        user_id = self.user.id,
-                        game_id = game.id,
-                        queue_position = next_pos
-                    )
-
-                self.session.add(queued)
+                newly_available_games.append(game)
                 already_queued.add(game.id)
-                next_pos += 1
+
+        recommendor = RecommendationService(self.session, self.user)
+        ranked_games = [
+                game for game, _ in recommendor.get_top_recommendations(
+                        newly_available_games, top_n = len(newly_available_games)
+                    )
+            ]
+
+        next_position = self.get_next_queue_pos()
+        for game in ranked_games:
+            queued = QueuedGame(
+                    game_id = game.id,
+                    user_id = self.user.id,
+                    queue_position = next_position
+                )
+            self.session.add(queued)
+            next_position += 1
 
         self.session.commit()
 

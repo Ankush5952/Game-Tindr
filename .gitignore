@@ -1,11 +1,11 @@
 .venv/
-pychache/
+__pycache__/
 *.pyc
 .env
 config/config.json
 *.db
 .vs/
 *.pyproj.user
-prompt.md
+*.log
 temp.py
 recommendor_model.pkl
