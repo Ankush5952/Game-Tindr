@@ -1,6 +1,7 @@
 from config.settings import Settings
 from sources.base_source import GameDataSource
 from sources.igdb_source import IGDBSource
+from sources.rawg_source import RAWGSource
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -16,8 +17,8 @@ class SourceRegistry:
 
         self._factories = {
                 "igdb" : lambda: IGDBSource(settings),
+                "rawg" : lambda : RAWGSource(settings),
                 #"steam" : lamba : SteamSource(settings),
-                #"rawg : lambda : RAWGSource(settings)
             }
 
     def get_active_sources(self) -> list[GameDataSource]:

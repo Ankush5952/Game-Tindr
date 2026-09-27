@@ -229,6 +229,24 @@ Each phase = one focused chunk of work with a clear "done" state and a git commi
 - Why now: the plugin pattern from Phase 2 is proven; this phase should feel mechanical.
 - NOTE: only sources with usable browsing/discovery APIs are added. If a source doesn't
   have one, skip it — no scraping.
+- STATUS: EVALUATED AND DECLINED. Steam's browsing API is undocumented/non-paginated (see
+  Phase 2 decision — skipped in favor of IGDB from the start). RAWG was implemented, tested
+  end-to-end, and confirmed working (`sources/rawg_source.py` proved out the full fetch +
+  description + genre/tag pipeline) — but ultimately removed:
+  - RAWG's genre/tag taxonomy is its own separate universe from IGDB's, so a RAWG "Game" row
+    and an IGDB "Game" row for the same real-world game would be two distinct, unmerged
+    database entities. Solving that properly requires the cross-source dedup/merge logic this
+    phase always flagged as genuinely hard (title-matching is unreliable across remakes/
+    re-releases) — this was never actually solved, just deferred, and RAWG's addition would
+    have forced solving it without a clear payoff.
+  - RAWG did not offer meaningfully better data than IGDB already provides (same rough shape:
+    genres, tags, description, cover, release year) — no unique value to justify the dedup
+    complexity cost.
+  - Decision: stay a single-source (IGDB) app. The `GameDataSource` plugin architecture from
+    Phase 2 remains in place and PROVEN to work end-to-end (RAWG plugged in cleanly, no core
+    code changes needed beyond one registry line) — so adding a genuinely better/differentiated
+    source later remains cheap, if one is ever found. `sources/rawg_source.py` removed rather
+    than left as unused dead code (see coding conventions, §6 — no placeholder bloat).
 
 **Phase 11 — Packaging & polish**
 - PyInstaller build into a standalone executable
@@ -272,3 +290,18 @@ here in case circumstances change:
   realistically needs an LLM with gaming-domain knowledge, not classical ML or generic
   sentence embeddings, which may not capture gaming-specific similarity well. Revisit if a
   user base or a suitable gaming-domain LLM/dataset becomes available.
+- **Swipe history management (reset + edit individual swipes):** planned as a post-roadmap
+  addition, once Phases 0-11 are complete, since it interacts non-trivially with the trained
+  model:
+  - "Reset swipe history" (clear `SwipeRecord`/`QueuedGame`, keep cached `Game`/`Genre`/`Tag`/
+    embeddings so nothing needs re-fetching) is straightforward on its own, BUT the trained
+    model (`recommender_model.pkl`) must also be reset/retrained from scratch alongside it —
+    otherwise the model keeps training on top of swipes that no longer exist in the DB,
+    silently skewing weights against reality.
+  - "Edit/undo an individual past swipe" (for mis-swipes) is harder: a fitted logistic
+    regression model can't cleanly have one training example "un-learned" — the only correct
+    fix is refitting the whole model from the corrected swipe set, not patching learned
+    coefficients directly. Feasible, but real design work (when to trigger a refit, whether a
+    single edit should force an immediate refit or wait for the normal retrain cadence).
+  - Deferred until the core roadmap (Phases 0-11) is finished, so this gets designed against a
+    stable, complete app rather than a moving target.
