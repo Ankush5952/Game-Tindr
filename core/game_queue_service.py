@@ -39,13 +39,22 @@ class GameQueueService:
                 .first()
             )
 
-        if next_entry is None:
-            return None
+        return next_entry.game if next_entry else None
 
-        game = next_entry.game
-        self.session.delete(next_entry)
-        self.session.commit()
-        return game
+    def remove_from_queue(self, game_id : int) -> None:
+        '''
+        Removes a specific game's QueuedGame entry
+        - called after swipe is recorded
+        '''
+        entry = (
+                self.session.query(QueuedGame)
+                .filter_by(game_id = game_id)
+                .first()
+            )
+
+        if entry is not None:
+            self.session.delete(entry)
+            self.session.commit()
 
     def needs_refill(self) -> bool:
         '''

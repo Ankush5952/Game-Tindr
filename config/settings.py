@@ -4,11 +4,13 @@ from pathlib import Path
 from dotenv import load_dotenv
 import json
 
+from utils.paths import get_app_data_path, get_base_path
+
 #Project root
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = get_app_data_path()
 ENV_PATH = PROJECT_ROOT/".env"
 CONFIG_PATH = PROJECT_ROOT/"config"/"config.json"
-CONFIG_EXAMPLE_PATH = PROJECT_ROOT/"config"/"config.example.json"
+CONFIG_EXAMPLE_PATH = get_base_path()/"config"/"config.example.json"
 
 @dataclass
 class Settings:
@@ -29,12 +31,18 @@ class Settings:
 
     def save_config(self, updates : dict) -> None:
         '''
-        merges updates into the config.json
+        merges updates into the config.json.
+        If config.json doesn't exist yet, seeds it from config.example.json's
+        full defaults first, rather than starting from an empty dict
         '''
-        config_data = {}
         if CONFIG_PATH.exists():
             with open(CONFIG_PATH, 'r') as f:
                 config_data = json.load(f)
+        elif CONFIG_EXAMPLE_PATH.exists():
+            with open(CONFIG_EXAMPLE_PATH, 'r') as f:
+                config_data = json.load(f)
+        else:
+            config_data = {}
 
         config_data.update(updates)
 

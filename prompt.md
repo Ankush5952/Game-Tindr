@@ -251,6 +251,21 @@ Each phase = one focused chunk of work with a clear "done" state and a git commi
 **Phase 11 — Packaging & polish**
 - PyInstaller build into a standalone executable
 - UI polish, more themes, README writeup
+- STATUS: standalone .exe build working end-to-end (games fetch, swipe, refill, model
+  training/persistence, config seeding all confirmed working from the packaged exe, not just
+  dev). Required fixing a real class of packaging bugs: several paths (`DB_PATH`, `LOG_FILE`,
+  `MODEL_PATH`, `THEMES_DIR`, `CONFIG_EXAMPLE_PATH`) were computed as "relative to this
+  Python file's location," which breaks once bundled — PyInstaller's `--onefile` mode extracts
+  bundled files to a temporary folder (`sys._MEIPASS`) at runtime, and that folder does NOT
+  persist between launches, so writable data (DB, logs, trained model) must live next to the
+  .exe instead (`utils/paths.py`: `get_base_path()` for read-only bundled resources vs
+  `get_app_data_path()` for writable data, both falling back to the project root in dev so
+  behavior there is unchanged). Bundled data files (theme JSON/QSS, config.example.json) need
+  explicit `--add-data` flags — PyInstaller does not auto-include non-Python data files.
+  Build command used:
+  `pyinstaller --name GameTindr --onefile --windowed --add-data "config/config.example.json;config" --add-data "ui/themes;ui/themes" main.py`
+  UI polish (themes beyond dark/light, general visual pass) left open-ended, not tracked as a
+  hard blocker for calling the roadmap complete.
 
 ## 6. Coding conventions to keep things maintainable
 - One class per file where reasonable; one clear responsibility per class

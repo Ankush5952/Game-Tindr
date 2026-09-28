@@ -9,3 +9,6 @@ config/config.json
 *.log
 temp.py
 recommendor_model.pkl
+build/
+dist/
+*.spec

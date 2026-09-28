@@ -7,13 +7,19 @@ learns your preferences from your swipe history and recommends games tailored to
 This is a solo learning project, built with AI guidance (see `prompt.md` for the full
 roadmap and design philosophy), not production software.
 
-## Current status: Phases 0-9 complete (~82% of planned roadmap)
+## Current status: Full roadmap (Phases 0-11) complete
 
-## Features so far
+Packaged as a standalone Windows executable — see "Building a standalone executable" below.
+Phase 10 (additional data sources) was evaluated (RAWG implemented and tested end-to-end) and
+deliberately declined in favor of staying single-source; see `prompt.md` Phase 10 for the
+full reasoning. The plugin architecture that would support a future source remains in place.
+
+## Features
 - Fetches real game data from [IGDB](https://www.igdb.com/) (cover art, genres, tags,
   description, release year)
 - Tinder-style swipeable card UI with drag gesture and fly-off animation
-- Swipe history saved to a local SQLite database
+- Swipe history saved to a local SQLite database; queued-but-unswiped games persist across
+  restarts instead of being silently discarded
 - Automatic background queue refilling — new games load before you run out, with no UI freeze
 - Dynamic, fully re-themeable UI (dark/light, JSON-configurable color palettes)
 - Settings screen: live theme switching, data source enable/disable toggles
@@ -27,6 +33,7 @@ roadmap and design philosophy), not production software.
   Automatically retrains every 20 new swipes (the "closed loop").
 - The live swipe queue is ranked by this recommendation score — higher-predicted games surface
   earlier in your swipe session, not in arbitrary/random fetch order.
+- Packaged as a standalone `.exe` via PyInstaller — runs without Python/venv installed.
 
 ## Tech stack
 - **Python 3.11**
@@ -35,7 +42,8 @@ roadmap and design philosophy), not production software.
 - **matplotlib** — analytics charts, embedded in the Qt UI
 - **scikit-learn** — trained logistic regression recommender model
 - **sentence-transformers** — description embeddings for semantic similarity scoring
-- **IGDB API** (via Twitch OAuth) — primary game data source
+- **PyInstaller** — standalone executable packaging
+- **IGDB API** (via Twitch OAuth) — game data source
 
 ## Project structure
 ```
@@ -45,15 +53,17 @@ game-tindr/
 ├── core/                   # database models, DB session, game repository, queue service,
 │                            # analytics service, embedding service, recommender heuristic,
 │                            # model trainer, unified recommendation service
-├── sources/                # pluggable game data source classes (IGDB now, more later)
+├── sources/                # pluggable game data source classes (IGDB active; plugin pattern
+│                            # supports adding more if a genuinely better source is found)
 ├── ui/                      # PySide6 views: main window, swipe card, settings, profile, onboarding, themes
-├── utils/                   # shared logging and HTTP client helpers
+├── utils/                   # shared logging, HTTP client, and path-resolution helpers
+│                            # (paths.py: dev vs packaged-exe path handling)
 ├── requirements.txt
 ├── recommender_model.pkl   # trained model, gitignored (generated data, not source)
 └── prompt.md                # full project roadmap and AI collaboration guide
 ```
 
-## Setup
+## Setup (running from source)
 1. Clone the repo and create a virtual environment:
    ```
    python -m venv .venv
@@ -75,13 +85,25 @@ game-tindr/
    python main.py
    ```
 
+## Building a standalone executable
+```
+pip install -r requirements.txt   # includes pyinstaller
+pyinstaller --name GameTindr --onefile --windowed --add-data "config/config.example.json;config" --add-data "ui/themes;ui/themes" main.py
+```
+Then copy your `.env` file next to the built `dist/GameTindr.exe` (it isn't bundled, since it
+holds your personal API credentials). The exe creates its own database, log file, config.json,
+and trained model file next to itself on first run — no separate install step needed on
+another machine, beyond providing a `.env` with valid IGDB credentials.
+
 ## How it works, briefly
 - **Data sources** (`sources/`) each implement a common `GameDataSource` interface, so
-  adding a new source (Steam, RAWG, etc. — planned) never requires touching existing code.
+  adding a new source never requires touching existing code — proven by plugging RAWG in and
+  back out cleanly during evaluation (see `prompt.md` Phase 10).
 - **`GameQueueService`** manages what game you see next, pulling from a persistent queue
   and refilling from active sources in a background thread when running low — so the app
   never freezes waiting on a network call. Newly fetched batches are ranked by recommendation
-  score before being queued.
+  score before being queued. Queue entries are only removed once a swipe is actually recorded,
+  so closing the app mid-session never silently discards a queued game.
 - **Swipes** are recorded as `SwipeRecord` rows — the training data behind the Profile tab's
   analytics and the recommendation model.
 - **`RecommendationService`** is the single entry point for recommendation scoring. It uses a
@@ -95,21 +117,31 @@ game-tindr/
 - **Theming** is fully data-driven: `ui/themes/*.json` files hold color palettes, applied
   onto a single shared QSS template and reused directly by matplotlib chart styling — no
   per-widget or per-chart hardcoded colors.
+- **Packaging** (`utils/paths.py`) distinguishes read-only bundled resources (themes, example
+  config — extracted to a temp folder by PyInstaller at runtime) from writable app data
+  (database, logs, trained model, personal config — which must live next to the .exe to
+  persist between launches, not in PyInstaller's temporary extraction folder).
 
-## Known limitations (by design, addressed in upcoming phases)
+## Known limitations (by design)
 - Recommendation quality depends entirely on the solo user's own swipe history — there's no
   cross-user data (parked in `prompt.md` §9 as a future possibility, not currently feasible).
 - Description similarity is computed against a single averaged "liked taste vector," which is
   a blunter signal than tag/genre-level specificity — validated as a real, believable outcome
   (not a bug) rather than something actively being tuned further right now.
-- Only one data source (IGDB) is active; Steam/RAWG are planned but not yet implemented.
+- Single data source (IGDB) by deliberate choice — see Phase 10 in `prompt.md` for why a
+  second source (RAWG) was built, tested, and then declined rather than kept.
 - Recommendations don't yet use the game's *name* itself as a pattern signal (e.g. "if you
   like A, you'll likely like B") — parked as a future possibility requiring either
   collaborative filtering (needs many users' data) or an LLM with gaming-domain knowledge.
+- Editing/undoing individual past swipes, and a clean "reset swipe history" feature, are
+  parked as post-roadmap additions — both require care around the trained model (it would
+  need retraining/resetting alongside any swipe-data change; see `prompt.md` §9).
 
 ## What's next
-See `prompt.md` for the full roadmap. Remaining phases: additional data sources (Steam, RAWG),
-packaging into a standalone executable, general UI polish.
+The original roadmap (`prompt.md`) is complete. Future work is tracked in `prompt.md` §9
+("Future possibilities") as an open-ended backlog, not a numbered phase plan — including
+swipe history editing/reset, a differentiated second data source if one is ever found, and
+name/premise-pattern recommendations.
 
 ## License
 Personal project, private repository.

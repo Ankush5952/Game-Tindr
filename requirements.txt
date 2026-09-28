@@ -3,5 +3,6 @@ SQLAlchemy
 python-dotenv
 requests
 matplotlib
-sentence-transformers
 scikit-learn
+sentence-transformers
+pyinstaller

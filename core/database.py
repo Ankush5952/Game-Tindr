@@ -3,8 +3,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
 from core.models import Base
+from utils.paths import get_app_data_path
 
-DB_PATH = Path(__file__).resolve().parent.parent/"game_tindr.db"
+DB_PATH = get_app_data_path()/"game_tindr.db"
 
 #Engine
 engine = create_engine(f"sqlite:///{DB_PATH}", echo = False)

@@ -1,8 +1,9 @@
 import logging
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-LOG_FILE = PROJECT_ROOT/"game_tindr.log"
+from utils.paths import get_app_data_path
+
+LOG_FILE = get_app_data_path()/"game_tindr.log"
 
 def get_logger(name : str) -> logging.Logger:
     '''

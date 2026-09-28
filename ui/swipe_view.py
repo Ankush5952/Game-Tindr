@@ -21,7 +21,7 @@ class SwipeView(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.setFixedSize(800, 550)
+        self.setFixedSize(800, 1080)
 
         self.current_card : GameCardWidget | None = None
         self.no_games_label : QLabel | None = None
@@ -58,7 +58,9 @@ class SwipeView(QWidget):
             return
 
         card.setParent(self)
-        card.move(250, 30)
+        card_x = (self.width() - card.width())//2
+        card_y = (self.height() - card.height())//2
+        card.move(card_x, -card_y)
         card.swiped.connect(lambda liked, gid=game.id : self.on_swiped(gid, liked))
         card.show()
 
@@ -104,10 +106,13 @@ class SwipeView(QWidget):
             session.add(swipe)
             session.commit()
             logger.info(f"Recorded swipe : game_id ={game_id} liked = {liked}")
+
+            queue_service = GameQueueService(session, user, Settings.load())
+            queue_service.remove_from_queue(game_id)
         finally:
             session.close()
 
-        if self.current_card is None:
+        if self.current_card is not None:
             self.current_card.deleteLater()
             self.current_card = None
 

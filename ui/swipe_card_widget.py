@@ -44,7 +44,15 @@ class GameCardWidget(QWidget):
         self.genre_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(self.genre_label)
 
-        self.setFixedSize(340, 480)
+        description = "Description : \n" + (game.description if game.description else "No description available")
+        self.desc_label = QLabel(description, alignment = Qt.AlignmentFlag.AlignCenter)
+        self.desc_label.setWordWrap(True)
+        self.desc_label.setFixedWidth(300)
+        self.desc_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(self.desc_label)
+
+        self.setFixedSize(340, 1000)
+        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
     
     def load_cover_image(self) -> None:

@@ -2,11 +2,12 @@ import json
 from multiprocessing.pool import TERMINATE
 from pathlib import Path
 
+from utils.paths import get_base_path
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-THEMES_DIR = Path(__file__).resolve().parent/"themes"
+THEMES_DIR = get_base_path()/"ui"/"themes"
 TEMPLATE_PATH = THEMES_DIR/"template.qss"
 
 def load_stylesheet(theme_name : str) -> str:

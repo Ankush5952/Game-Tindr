@@ -1,5 +1,4 @@
 import pickle
-from pathlib import Path
 from pyexpat import features
 
 import numpy as np
@@ -10,10 +9,11 @@ from sqlalchemy.orm import Session
 from core.models import Game, SwipeRecord, User
 from core.embedding_service import cosine_similarity
 from utils.logger import get_logger
+from utils.paths import get_app_data_path
 
 logger = get_logger(__name__)
 
-MODEL_PATH = Path(__file__).resolve().parent.parent/"recommendor_model.pkl"
+MODEL_PATH = get_app_data_path()/"recommendor_model.pkl"
 
 MIN_SWIPES_TO_TRAIN = 15
 
